@@ -131,3 +131,4 @@ cython_debug/
 
 assets/*
 */assets/*
+/model/*
