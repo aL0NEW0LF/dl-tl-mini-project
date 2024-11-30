@@ -27,7 +27,23 @@ class Classifier:
         np.set_printoptions(suppress=True)  # Disable scientific notation for clarity
 
         # Load the Keras model
-        self.model = tensorflow.keras.models.load_model(self.model_path)
+        base_model = tensorflow.keras.applications.EfficientNetB7(
+            input_shape=(64, 64, 3), include_top=False, weights=None
+        )
+
+        self.model = tensorflow.keras.models.Sequential(
+            [
+                base_model,
+                tensorflow.keras.layers.GlobalAveragePooling2D(),
+                tensorflow.keras.layers.Dropout(0.5),
+                tensorflow.keras.layers.Dense(2560, activation="relu"),
+                tensorflow.keras.layers.Dense(32, activation="softmax"),
+            ]
+        )
+
+        self.model.load_weights(
+            "D:\\Projects\\dl-tl-mini-project\\model\\model_checkpoint.keras"
+        )
 
         # Create a NumPy array with the right shape to feed into the Keras model
         self.data = np.ndarray(shape=(1, 64, 64, 3), dtype=np.float32)

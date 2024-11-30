@@ -125,8 +125,8 @@ import os
 import time
 
 classifier = Classifier(
-    "D:\\Projects\\dl-tl-mini-project\\model.h5",
-    "D:\\Projects\\dl-tl-mini-project\\model/labels.txt",
+    "D:\\Projects\\dl-tl-mini-project\\model\\model_checkpoint.keras",
+    "D:\\Projects\\dl-tl-mini-project\\model\\label.txt",
 )
 offset = 40
 imgSize = 64
